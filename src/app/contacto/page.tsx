@@ -20,7 +20,7 @@ export default function ContactoPage() {
     event.preventDefault();
     const result = getContactSchema().safeParse(formData);
     if (!result.success) {
-      toast.error(result.error.errors[0]?.message || "Error");
+      toast.error(result.error.issues[0]?.message || "Error");
       return;
     }
     setSending(true);
