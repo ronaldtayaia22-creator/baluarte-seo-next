@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Shield } from "lucide-react";
 import { t } from "@/lib/i18n";
 import { useLocale } from "@/hooks/useLocale";
+import { withPublicPath } from "@/lib/publicSite";
 
 const COOKIE_KEY = "baluarte_cookie_consent";
 
@@ -47,7 +48,7 @@ const CookieConsent = () => {
             <p className="text-sm font-body text-foreground font-medium">{t("cookie.title")}</p>
             <p className="text-xs text-muted-foreground font-body">
               {t("cookie.desc")}{" "}
-              <a href="/privacidad" className="underline text-primary hover:text-primary-deep">{t("footer.privacy")}</a>
+              <a href={withPublicPath("/privacidad")} className="underline text-primary hover:text-primary-deep">{t("footer.privacy")}</a>
             </p>
           </div>
         </div>

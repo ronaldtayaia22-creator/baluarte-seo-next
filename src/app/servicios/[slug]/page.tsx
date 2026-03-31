@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { t } from "@/lib/i18n";
 import { useLocale } from "@/hooks/useLocale";
 import { withLovablePath } from "@/lib/lovable";
+import { withPublicPath } from "@/lib/publicSite";
 
 type ServiceRecord = {
   id: string;
@@ -98,7 +99,7 @@ export default function ServiceDetailPage() {
       <div className="min-h-screen bg-background">
         <div className="pt-32 text-center">
           <h1 className="text-2xl font-display text-foreground">{t("pub.serviceNotFound")}</h1>
-          <Link href="/explorar" className="text-primary mt-4 inline-block">
+          <Link href={withPublicPath("/explorar")} className="text-primary mt-4 inline-block">
             {t("pub.viewAllServices")}
           </Link>
         </div>

@@ -7,6 +7,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { t } from "@/lib/i18n";
 import { useLocale } from "@/hooks/useLocale";
 import { withLovablePath } from "@/lib/lovable";
+import { withPublicPath } from "@/lib/publicSite";
 
 const Navbar = ({ heroOverlay = false }: { heroOverlay?: boolean }) => {
   useLocale();
@@ -34,11 +35,11 @@ const Navbar = ({ heroOverlay = false }: { heroOverlay?: boolean }) => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md shadow-sm border-b border-border/30" : "bg-transparent border-b border-transparent"}`}>
       <div className="section-padding flex items-center justify-between h-16 md:h-32">
         <div className="md:hidden flex-1" />
-        <Link href="/"><img src="/assets/clinica-baluarte-logo.png" alt="Clínica Baluarte" className="h-12 md:h-16 object-contain" /></Link>
+        <Link href={withPublicPath("/")}><img src="/assets/clinica-baluarte-logo.png" alt="Clínica Baluarte" className="h-12 md:h-16 object-contain" /></Link>
 
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className={`text-sm font-body transition-colors duration-300 ${textClass}`}>{l.label}</Link>
+            <Link key={l.href} href={withPublicPath(l.href)} className={`text-sm font-body transition-colors duration-300 ${textClass}`}>{l.label}</Link>
           ))}
           <Link href={withLovablePath("/auth")} className={`text-sm font-body transition-colors duration-300 ${textClass}`}>
             {t("nav.myAccount")}
@@ -60,7 +61,7 @@ const Navbar = ({ heroOverlay = false }: { heroOverlay?: boolean }) => {
         <div className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border/50 animate-fade-up">
           <div className="section-padding py-6 flex flex-col gap-4">
             {links.map((l) => (
-              <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-base font-body text-foreground hover:text-primary transition-colors py-2">{l.label}</Link>
+              <Link key={l.href} href={withPublicPath(l.href)} onClick={() => setOpen(false)} className="text-base font-body text-foreground hover:text-primary transition-colors py-2">{l.label}</Link>
             ))}
             <Link href={withLovablePath("/auth")} onClick={() => setOpen(false)} className="text-base font-body text-foreground hover:text-primary transition-colors py-2">
               {t("nav.myAccount")}

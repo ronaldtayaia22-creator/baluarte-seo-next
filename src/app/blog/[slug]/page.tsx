@@ -10,6 +10,7 @@ import { Calendar, User, ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useLocale } from "@/hooks/useLocale";
 import { t } from "@/lib/i18n";
+import { withPublicPath } from "@/lib/publicSite";
 
 const dateLocales = {
   es,
@@ -78,7 +79,7 @@ export default function BlogPostPage() {
       <div className="bg-background min-h-screen">
         <main className="pt-32 pb-16 section-padding max-w-3xl mx-auto text-center">
           <h1 className="text-2xl font-display font-bold text-foreground mb-4">{t("pub.articleNotFound")}</h1>
-          <Link href="/blog" className="text-primary hover:underline font-body">
+          <Link href={withPublicPath("/blog")} className="text-primary hover:underline font-body">
             ← {t("pub.backToBlog")}
           </Link>
         </main>
@@ -89,7 +90,7 @@ export default function BlogPostPage() {
   return (
     <div className="bg-background min-h-screen">
       <main className="pt-32 pb-16 section-padding max-w-3xl mx-auto">
-        <Link href="/blog" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary font-body mb-6">
+        <Link href={withPublicPath("/blog")} className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary font-body mb-6">
           <ArrowLeft className="w-4 h-4" /> {t("pub.backToBlog")}
         </Link>
 

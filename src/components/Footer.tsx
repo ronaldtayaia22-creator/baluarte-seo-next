@@ -4,6 +4,7 @@ import { Clock, MapPin, Mail } from "lucide-react";
 import Link from "next/link";
 import { t } from "@/lib/i18n";
 import { useLocale } from "@/hooks/useLocale";
+import { withPublicPath } from "@/lib/publicSite";
 
 const Footer = () => {
   useLocale();
@@ -37,10 +38,10 @@ const Footer = () => {
 
         <div className="mt-10 pt-6 border-t border-border space-y-3">
           <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground font-body">
-            <Link href="/privacidad" className="hover:text-primary transition-colors">{t("footer.privacy")}</Link>
-            <Link href="/terminos" className="hover:text-primary transition-colors">{t("footer.terms")}</Link>
-            <Link href="/cookies" className="hover:text-primary transition-colors">{t("footer.cookies")}</Link>
-            <Link href="/blog" className="hover:text-primary transition-colors">{t("blog.title")}</Link>
+            <Link href={withPublicPath("/privacidad")} className="hover:text-primary transition-colors">{t("footer.privacy")}</Link>
+            <Link href={withPublicPath("/terminos")} className="hover:text-primary transition-colors">{t("footer.terms")}</Link>
+            <Link href={withPublicPath("/cookies")} className="hover:text-primary transition-colors">{t("footer.cookies")}</Link>
+            <Link href={withPublicPath("/blog")} className="hover:text-primary transition-colors">{t("blog.title")}</Link>
           </div>
           <div className="text-center space-y-2">
             <p className="text-xs text-muted-foreground font-body">
