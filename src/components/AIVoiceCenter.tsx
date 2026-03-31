@@ -205,9 +205,13 @@ const AIVoiceCenter = () => {
     setTranscript("");
     setVoiceState("processing");
     try {
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) {
+        headers.Authorization = `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}`;
+      }
       const resp = await fetch(VOICE_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}` },
+        headers,
         body: JSON.stringify({ messages: allMessages.map(m => ({ role: m.role, content: m.contextContent || m.content })), locale: getLocale() }),
       });
       if (!resp.ok) throw new Error("Error");
