@@ -6,7 +6,8 @@ import { Send, Sparkles, Loader2, ChevronDown, X, RotateCcw } from "lucide-react
 import ReactMarkdown from "react-markdown";
 import { t, getLocale } from "@/lib/i18n";
 import { useLocale } from "@/hooks/useLocale";
-import { withLovablePath } from "@/lib/lovable";
+import { withLovablePath, isLovableOperationPath } from "@/lib/lovable";
+import { withPublicPath } from "@/lib/publicSite";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -173,7 +174,8 @@ const AIChatCenter = () => {
 
   const handleInternalLink = (href: string) => {
     setIsExpanded(false);
-    window.location.href = withLovablePath(href);
+    const target = isLovableOperationPath(href) ? withLovablePath(href) : withPublicPath(href || "/");
+    window.location.href = target;
   };
 
   if (!showBar) return null;

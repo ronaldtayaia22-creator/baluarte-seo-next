@@ -1,5 +1,24 @@
 export const LOVABLE_BASE_URL = process.env.NEXT_PUBLIC_LOVABLE_URL || "";
 
+const LOVABLE_OPERATION_PREFIXES = [
+  "/reservar",
+  "/cita-accion",
+  "/auth",
+  "/mi-cuenta",
+  "/admin",
+  "/panel",
+  "/dashboard",
+];
+
+function normalizePath(path: string) {
+  return path?.startsWith("http") ? new URL(path).pathname : path || "";
+}
+
+export function isLovableOperationPath(path: string) {
+  const normalized = normalizePath(path).split("?")[0] || "";
+  return LOVABLE_OPERATION_PREFIXES.some((prefix) => normalized.startsWith(prefix));
+}
+
 export function withLovablePath(path: string) {
   if (!LOVABLE_BASE_URL) return path;
   if (!path.startsWith("/")) {
