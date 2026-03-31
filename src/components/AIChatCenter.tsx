@@ -189,7 +189,7 @@ const AIChatCenter = () => {
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-sm font-body font-medium text-foreground">{t("chat.title")}</span>
-              <img src={clinicaLogo} alt="Clínica Baluarte" className="inline-block h-8 object-contain" />
+              <img src={CLINIC_LOGO} alt="Clínica Baluarte" className="inline-block h-8 object-contain" />
             </div>
             <div className="flex-1 flex justify-end gap-1">
               {messages.length > 0 && (
