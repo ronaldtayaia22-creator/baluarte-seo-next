@@ -148,9 +148,14 @@ const AIVoiceCenter = () => {
     const cleanText = cleanForTTS(text);
     if (!cleanText || ttsBlocked) return null;
     try {
+      const ttsHeaders: Record<string, string> = { "Content-Type": "application/json" };
+      if (process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) {
+        ttsHeaders.apikey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+        ttsHeaders.Authorization = `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}`;
+      }
       const response = await fetch(TTS_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json", apikey: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY}` },
+        headers: ttsHeaders,
         body: JSON.stringify({ text: cleanText }),
       });
       const contentType = response.headers.get("content-type") || "";
