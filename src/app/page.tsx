@@ -1,5 +1,5 @@
-import IndexPage from "@/pages/Index";
+import { HomePage } from "@/home/HomePage";
 
 export default function Home() {
-  return <IndexPage />;
+  return <HomePage />;
 }
