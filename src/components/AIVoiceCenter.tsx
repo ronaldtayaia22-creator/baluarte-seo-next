@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Mic, MicOff, Volume2, VolumeX, Loader2, X, Square, Send, Play, AlertTriangle, Calendar, CalendarX, RefreshCw } from "lucide-react";
 import { t, getLocale, LOCALE_BCP47 } from "@/lib/i18n";
 import { useLocale } from "@/hooks/useLocale";
@@ -285,7 +285,7 @@ const AIVoiceCenter = () => {
     const datosMatch = content.match(/TUS DATOS EN BALUARTE\n([\s\S]*?)(?=\n\nPRÓXIMAS CITAS|\n\nNo tienes citas|\n\n¿Estos datos|\n\n|$)/);
     const citasMatch = content.match(/PRÓXIMAS CITAS\n([\s\S]*?)(?=\n\n|$)/);
     const resumenMatch = content.match(/RESUMEN DE TU CITA\n([\s\S]*?)(?:\n\n|$)/);
-    const parts: JSX.Element[] = [];
+    const parts: React.ReactNode[] = [];
     let remaining = content;
 
     if (datosMatch) {
